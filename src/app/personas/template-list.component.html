@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Nombre</th>
+      <td><a routerLink="add" class="btn btn-primary">Añadir</a></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of VM.Listado">
+      <td>
+          <a routerLink="{{item.id}}/{{item.nombre}}-{{item.apellidos}}">{{item.nombre}} {{item.apellidos}}</a>
+      </td>
+      <td>
+        <a routerLink="{{item.id}}/edit" class="btn btn-primary">Editar</a>
+        <button type="button" class="btn btn-danger" (click)="VM.delete(item.id)">Borrar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

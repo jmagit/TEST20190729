@@ -1,0 +1,72 @@
+<table>
+  <tr>
+    <td><calculadora [SeparadorDecimal]="','" (updated)="ponResultado('UNO', $event)"></calculadora></td>
+    <td >
+      <table border="1">
+        <tr><th>Nº</th><th>Calc</th><th>Resultado</th></tr>
+        <tr  *ngFor="let r of resultados | slice:-5">
+          <td class="text-right">{{r.pos}}</td>
+          <td>{{r.origen}}</td>
+          <!-- <td class="text-right">{{r.valor | number:'1.0-8' }}</td> -->
+          <td class="text-right">{{r.valor | localnumber:idioma:'1.0-8' }}</td>
+        </tr>
+        <tr>
+          <td colspan="3">Idioma: <select [(ngModel)]="idioma" >
+            <option *ngFor="let p of idiomas" [value]="p.codigo">{{p.region}}</option>
+          </select>
+        </td>
+        </tr>
+      </table>
+    </td>
+    <td><calculadora [init]="valCalculadora" (updated)="ponResultado('DOS', $event)"></calculadora></td>
+  </tr>
+  <tr>
+    <td colspan="3"><input type="number" [(ngModel)] = "valCalculadora"></td>
+  </tr>
+  <tr>
+    <td colspan="3">{{resultados | json}}</td>
+  </tr>
+</table>
+
+<h1>Hola {{nombre | elipsis:20 | uppercase}}</h1>
+<p>
+  <input type="text" [(ngModel)]="nombre">
+  <input type="button" value="saluda" (click)="saluda()">
+  <input type="button" value="depide" (click)="depide()">
+  <input type="button" value="di algo" (click)="di('algo')">
+  <input type="button" value="notifica" (click)="notify.add('Hola ' + nombre)">
+  <input type="button" value="Avisa" (click)="notify.add('Demo de aviso')">
+  <input type="button" value="cambia" (click)="cambia()">
+</p>
+<p [textContent]="resultado">Esto se pierde</p>
+<p [innerHTML]="resultado">Esto se pierde</p>
+<p [hidden]="!visible">Ahora me ves</p>
+<p *ngIf="visible">Ahora existo</p>
+<p [ngClass]="estetica">
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit, fuga eum magnam deleniti perspiciatis est architecto, quas tenetur dignissimos consequuntur, cumque tempore? Animi nemo ab provident facere vel maxime quos.
+</p>
+<p [class.novisible]="!visible">Ahora me ves</p>
+
+<p>
+  Calcula: 2 + 2 = {{ 2 + 2 }} = {{ calcula(2, 2) | currency:'EUR':'symbol':'1.2-2' }}
+</p>
+
+<ul>
+  <li *ngFor="let item of listado | slice:-5; let ind=index; let fondo=odd;"
+    [style.background-color]="fondo ? 'LightBlue' : 'Lavender'">
+      {{ item.nombre | titlecase }} ({{ item.id }}) [ Elemento {{ind + 1}} de {{ listado.length }}]
+  </li>
+</ul>
+<p>
+  <select [(ngModel)]="idProvincia">
+    <option *ngFor="let item of listado" value="{{ item.id }}">{{ item.nombre }}</option>
+  </select>
+  Seleccionado: {{idProvincia}}
+  <input type="text" value="Tabarnia" #txtProvincia>
+  <input type="button" value="añadir" (click)="add(txtProvincia.value)">
+
+</p>
+<indra-sizer [(size)]="fontSize"></indra-sizer>
+<p [style.font-size.px]="fontSize">
+{{listado | json}}
+</p>

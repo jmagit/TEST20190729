@@ -1,0 +1,8 @@
+<p>
+  <img src="assets/logo.png">
+  <button *ngFor="let item of menu; let indice=index" (click)="seleccionar(indice)">
+    {{item.texto}}
+  </button>
+</p>
+<app-notification></app-notification>
+<ng-container *ngComponentOutlet="seleccionado"></ng-container>

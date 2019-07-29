@@ -1,0 +1,30 @@
+.Calculadora {
+  background-color: #e6f3ff ! important;
+  border-style: outset ! important;
+  padding: 6px ! important;
+  margin: 4px ! important;
+}
+
+.Pantalla {
+  background-color: #004000;
+  color: yellow;
+  border-style: inset ! important;
+  text-align: right ! important;
+  padding: 4px ! important;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.LimpiaPantalla {
+  font-weight: bold ! important;
+}
+
+.btnDigito {
+  color: navy;
+  width: 100%;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.btnOperar {
+  color: red;
+  width: 100%;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}

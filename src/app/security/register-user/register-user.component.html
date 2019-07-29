@@ -1,0 +1,51 @@
+<form [formGroup]="miForm" class="was-validated" [class.is-invalid]="miForm.invalid">
+  <div class="form-group">
+    <label [class.is-invalid]="miForm.hasError('customMsg', 'idUsuario')">User:
+      <input class="form-control" type="text" formControlName="idUsuario">
+      <span class="errorMsg">{{miForm.getError('customMsg', 'idUsuario')}}</span>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Name:
+      <input class="form-control" type="text" formControlName="nombre">
+    </label>
+    <span class="errorMsg">{{miForm.getError('customMsg', 'nombre')}}</span>
+  </div>
+  <fieldset formGroupName="password">
+    <div class="form-group">
+      <label>Password:
+        <input class="form-control" type="password" formControlName="passwordValue">
+      </label>
+      {{miForm?.get('password')?.get('passwordValue')?.errors | json}}
+      <span class="errorMsg">{{miForm.getError('customMsg', ['password','passwordValue'])}}</span>
+    </div>
+    <div class="form-group">
+      <label>Confirm Password:
+        <input class="form-control" type="password" formControlName="passwordConfirm">
+        <span class="errorMsg">{{miForm.getError('customMsg', ['password','passwordConfirm'])}}</span>
+      </label>
+    </div>
+
+  </fieldset>
+  {{miForm?.get('password')?.errors | json}}
+  <div formArrayName="roles">
+    <h4>Roles
+      <button class="btn btn-info btn-sm" (click)="addRole()">Add Role</button>
+    </h4>
+
+    <ul *ngFor="let row of $any(miForm.get('roles')).controls; let i=index" [formGroupName]="i">
+      <li>Rol #{{i + 1}}:
+        <div class="form-group">
+          <select class="form-control" formControlName="role">
+            <option>Usuarios</option>
+            <option>Administradores</option>
+          </select>{{row?.get('role')?.errors | json}}
+          <button type="button" class="close" aria-label="Close" (click)="deleteRole(i)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <button class="btn btn-outline-primary" (click)="send()" [disabled]="miForm.invalid">Send</button>
+</form>{{ miForm.value | json }}
