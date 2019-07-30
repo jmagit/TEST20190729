@@ -1,11 +1,13 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
+import { LoginComponent } from './login.po';
 
 describe('Para probar la página principal', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
+    page.navigateTo();
   });
 
   it('Debe verse el mensaje de bienvenida', () => {
@@ -15,14 +17,14 @@ describe('Para probar la página principal', () => {
 
   describe('Deben funcionar las opciones del menu', () => {
     let menu: Array<any> = [
-        { ruta: '/inicio', texto: 'inicio', componente: 'app-home' },
-        { ruta: '/demos', texto: 'demos', componente: 'app-demos' },
-        { ruta: '/chisme/de/hacer/numeros', texto: 'calculadora', componente: 'calculadora' },
-        { ruta: '/personas', texto: 'personas', componente: 'xapp-personas-list' },
-        { ruta: '/pepito/grillo', texto: 'pepito', componente: 'app-personas-view' },
-        { ruta: '/config', texto: 'config', componente: 'app-configuracion' },
-        { ruta: '/config/datos', texto: 'datos', componente: 'app-datos' },
-      ];
+      { ruta: '/inicio', texto: 'inicio', componente: 'app-home' },
+      { ruta: '/demos', texto: 'demos', componente: 'app-demos' },
+      { ruta: '/chisme/de/hacer/numeros', texto: 'calculadora', componente: 'calculadora' },
+      { ruta: '/personas', texto: 'personas', componente: 'app-personas-list' },
+      { ruta: '/pepito/grillo', texto: 'pepito', componente: 'app-personas-view' },
+      { ruta: '/config', texto: 'config', componente: 'app-configuracion' },
+      { ruta: '/config/datos', texto: 'datos', componente: 'app-datos' },
+    ];
     beforeAll(() => {
       page = new AppPage();
       page.navigateTo();
@@ -57,6 +59,21 @@ describe('Para probar la página principal', () => {
     // });
   });
 
+  describe('Probar login', () => {
+    fit('Hacer login', () => {
+      page.navigateTo();
+      const cmp = new LoginComponent();
+      browser.sleep(500);
+      cmp.ponUsuario('admin');
+      browser.sleep(500);
+      cmp.ponPassword('P@$$w0rd');
+      browser.sleep(500);
+      cmp.enviar();
+      browser.sleep(500);
+      expect(cmp.isLogin().isPresent()).toBeFalsy();
+      browser.sleep(1500);
+    });
+  });
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
