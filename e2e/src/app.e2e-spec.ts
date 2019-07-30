@@ -30,16 +30,25 @@ describe('Para probar la página principal', () => {
       browser.sleep(1000);
     });
 
-    it('Navego a Demos', () => {
-      page.pulsarMenu('demos');
-      expect(page.dameComponente('app-demos').isPresent()).toBeTruthy();
-      browser.sleep(1000);
+    it('Navego a las opciones', () => {
+      menu.forEach(item => {
+        page.pulsarMenu(item.texto);
+        expect(page.dameComponente(item.componente).isPresent()).toBeTruthy();
+        browser.sleep(1000);
+      });
     });
-    it('Navego a Calculadora', () => {
-      page.pulsarMenu('calculadora');
-      expect(page.dameComponente('calculadora').isPresent()).toBeTruthy();
-      browser.sleep(1000);
-    });
+
+
+    // it('Navego a Demos', () => {
+    //   page.pulsarMenu('demos');
+    //   expect(page.dameComponente('app-demos').isPresent()).toBeTruthy();
+    //   browser.sleep(1000);
+    // });
+    // it('Navego a Calculadora', () => {
+    //   page.pulsarMenu('calculadora');
+    //   expect(page.dameComponente('calculadora').isPresent()).toBeTruthy();
+    //   browser.sleep(1000);
+    // });
   });
 
   afterEach(async () => {
