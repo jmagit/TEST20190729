@@ -14,7 +14,17 @@ describe('Para probar la página principal', () => {
   });
 
   describe('Deben funcionar las opciones del menu', () => {
+    let menu: Array<any>;
     beforeAll(() => {
+      menu = [
+        { ruta: '/inicio', texto: 'inicio', componente: 'app-home' },
+        { ruta: '/demos', texto: 'demos', componente: 'app-demos' },
+        { ruta: '/chisme/de/hacer/numeros', texto: 'calculadora', componente: 'calculadora' },
+        { ruta: '/personas', texto: 'personas', componente: 'app-personas-list' },
+        { ruta: '/pepito/grillo', texto: 'pepito', componente: 'app-personas-view' },
+        { ruta: '/config', texto: 'config', componente: 'app-configuracion' },
+        { ruta: '/config/datos', texto: 'datos', componente: 'app-datos' },
+      ];
       page = new AppPage();
       page.navigateTo();
       browser.sleep(1000);
