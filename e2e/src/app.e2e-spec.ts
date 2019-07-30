@@ -1,14 +1,14 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('Para probar la página principal', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('Debe verse el mensaje de bienvenida', () => {
     page.navigateTo();
     expect(page.getTitleText()).toEqual('Welcome to Curso de Angular!');
   });
