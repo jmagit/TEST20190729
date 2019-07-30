@@ -60,7 +60,7 @@ describe('Para probar la página principal', () => {
   });
 
   describe('Probar login', () => {
-    fit('Hacer login', () => {
+    it('Hacer login', () => {
       page.navigateTo();
       const cmp = new LoginComponent();
       browser.sleep(500);
