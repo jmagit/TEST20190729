@@ -12,6 +12,12 @@ exports.config = {
   specs: [
     './src/**/*.e2e-spec.ts'
   ],
+  suites: {
+    smoke: './src/calculadora.e2e-spec.ts',
+    home: [
+      './src/app.e2e-spec.ts'
+    ]
+  },
   capabilities: {
     'browserName': 'chrome'
   },

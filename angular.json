@@ -63,7 +63,20 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "curso:build"
+            "browserTarget": "curso:build",
+            "proxyConfig": "proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "curso:build:production"
+            }
+          }
+        },
+        "serve-e2e": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "curso:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -111,7 +124,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "curso:serve"
+            "devServerTarget": "curso:serve-e2e"
           },
           "configurations": {
             "production": {

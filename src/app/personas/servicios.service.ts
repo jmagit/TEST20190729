@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class PersonasDAOService extends RESTDAOService<any, any> {
   constructor(http: HttpClient) {
-    super(http, 'personas');
+    super(http, 'personas', { withCredentials: true });
   }
 }
 

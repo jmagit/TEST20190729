@@ -28,14 +28,14 @@ describe('Para probar la página principal', () => {
     beforeAll(() => {
       page = new AppPage();
       page.navigateTo();
-      browser.sleep(1000);
+      // browser.sleep(1000);
     });
 
     menu.forEach(item => {
       it(`Navego a ${item.texto}`, () => {
         page.pulsarMenu(item.texto);
         expect(page.dameComponente(item.componente).isPresent()).toBeTruthy();
-        browser.sleep(1000);
+        // browser.sleep(1000);
       });
     });
 
@@ -63,22 +63,22 @@ describe('Para probar la página principal', () => {
     it('Hacer login', () => {
       page.navigateTo();
       const cmp = new LoginComponent();
-      browser.sleep(500);
+      // browser.sleep(500);
       cmp.ponUsuario('admin');
-      browser.sleep(500);
+      // browser.sleep(500);
       cmp.ponPassword('P@$$w0rd');
-      browser.sleep(500);
+      // browser.sleep(500);
       cmp.enviar();
-      browser.sleep(500);
+      // browser.sleep(500);
       expect(cmp.isLogin().isPresent()).toBeFalsy();
-      browser.sleep(1500);
+      // browser.sleep(1500);
     });
   });
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
-  });
+  // afterEach(async () => {
+  //   // Assert that there are no errors emitted from the browser
+  //   const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+  //   expect(logs).not.toContain(jasmine.objectContaining({
+  //     level: logging.Level.SEVERE,
+  //   } as logging.Entry));
+  // });
 });
